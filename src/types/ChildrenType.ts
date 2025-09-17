@@ -1,3 +1,9 @@
-type ChildrenType = React.ReactElement[] | React.ReactElement | string | (React.ReactElement | string)[];
+interface StudentInterface {
+  id: number;
+  first_name: string;
+  last_name: string;
+  middle_name: string;
+  groupId: number;
+};
 
-export default ChildrenType;
+export default StudentInterface;
