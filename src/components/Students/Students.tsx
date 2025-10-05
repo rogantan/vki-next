@@ -1,20 +1,26 @@
 'use client';
 
-import useGroups from '@/hooks/useGroups';
 import useStudents from '@/hooks/useStudents';
-
-import StudentInterface from '@/types/StudentInterface';
+import type StudentInterface from '@/types/StudentInterface';
+import Student from './Student/Student';
 
 const Students = (): React.ReactElement => {
-  const { students } = useStudents();
-  const {groups} = useGroups();
+  const { students, deleteStudentMutate } = useStudents();
+
+  const onDeleteHandler = (studentId: number): void => {
+    if (confirm('Удалить студента?')) {
+      deleteStudentMutate(studentId);
+    }
+  };
+
   return (
     <div>
       {students.map((student: StudentInterface) => (
-        <h2 key={student.id}>
-          {student.first_name}
-          <div>{groups.find(x => x.id === student.groupId)?.name}</div>
-        </h2>
+        <Student
+          key={student.id}
+          student={student}
+          onDelete={onDeleteHandler}
+        />
       ))}
     </div>
   );
