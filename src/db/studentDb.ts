@@ -10,7 +10,7 @@ export const getStudentsDb = async (): Promise<StudentInterface[]> => {
   const db = new sqlite3.Database(url || "");
 
   const groups = await new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM student';
+    const sql = 'SELECT * FROM students';
     db.all(sql, [], (err, rows) => {
       if (err) {
         reject(err);
@@ -30,7 +30,7 @@ export const deleteStudentDb = async (studentId: number): Promise<number> => {
   const db = new sqlite3.Database(process.env.DB ?? './db/vki-web.db');
 
   await new Promise((resolve, reject) => {
-    db.run('DELETE FROM student WHERE id=?', [studentId], (err) => {
+    db.run('DELETE FROM students WHERE id=?', [studentId], (err) => {
       if (err) {
         reject(err);
         db.close();
