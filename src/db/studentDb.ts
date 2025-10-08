@@ -36,6 +36,7 @@ export const deleteStudentDb = async (studentId: number): Promise<number> => {
         db.close();
         return;
       }
+      console.log("eufheufh");
       resolve(studentId);
       db.close();
     });
